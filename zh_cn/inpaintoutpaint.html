@@ -1,0 +1,59 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2024-08-01T14:56:17.1140339"><title>InpaintOutpaint | FooocusAPI</title><script type="application/json" id="virtual-toc-data">[{"id":"generate-mask","level":0,"title":"Generate mask","anchor":"#generate-mask"},{"id":"inpaint","level":0,"title":"Inpaint","anchor":"#inpaint"},{"id":"outpaint","level":0,"title":"Outpaint","anchor":"#outpaint"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b408/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="InpaintOutpaint | FooocusAPI"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="FooocusAPI Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/docs/zh_cn/inpaintoutpaint.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="InpaintOutpaint | FooocusAPI"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/docs/zh_cn/inpaintoutpaint.html#webpage",
+    "url": "writerside-documentation/docs/zh_cn/inpaintoutpaint.html",
+    "name": "InpaintOutpaint | FooocusAPI",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/docs/#website",
+    "url": "writerside-documentation/docs/",
+    "name": "FooocusAPI Help"
+}</script><!-- End Schema.org --></head><body data-id="InpaintOutpaint" data-main-title="InpaintOutpaint" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="How-to.md|How to"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>FooocusAPI zh_cn Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="InpaintOutpaint" id="InpaintOutpaint.md">InpaintOutpaint</h1><section class="chapter"><h2 id="generate-mask" data-toc="generate-mask">Generate mask</h2><p id="nrl5n6_6"><span class="control" id="nrl5n6_14">New future from v2.5.0</span></p><aside class="prompt" data-type="tip" data-title="" id="nrl5n6_7"><p id="nrl5n6_15">Note：当你使用 generate mask 的时候，这是一个单独的步骤。它不会在 inpaint 的过程中自动执行。这是因为 generate mask 不是图像生成的一部分，它是一个单独的函数，这也是为什么它有单独的 endpoint。</p></aside><p id="nrl5n6_8">它对应的是 WebUI 中下图部分的功能：</p><figure id="nrl5n6_9"><img alt="generate_mask_webui_01.png" src="images/generate_mask_webui_01.png" title="generate_mask_webui_01.png" width="1964" height="1352"></figure><p id="nrl5n6_10">以图中最基础的情况为例：</p><div class="code-block" data-lang="python">
+import requests
+
+url = &quot;http://localhost:7866/v1/tools/generate_mask&quot;
+
+params = {
+  &quot;image&quot;: &quot;http://localhost:7866/outputs/2024-07-27/2024-07-26_16-13-33_3951.png&quot;,
+  &quot;mask_model&quot;: &quot;isnet-general-use&quot;,
+  &quot;cloth_category&quot;: &quot;full&quot;,
+  &quot;dino_prompt_text&quot;: &quot;&quot;,
+  &quot;sam_model&quot;: &quot;vit_b&quot;,
+  &quot;box_threshold&quot;: 0.3,
+  &quot;text_threshold&quot;: 0.25,
+  &quot;sam_max_detections&quot;: 0,
+  &quot;dino_erode_or_dilate&quot;: 0,
+  &quot;dino_debug&quot;: False
+}
+
+response = requests.post(url, json=params)
+</div><p id="nrl5n6_12">返回值是一个 <code class="code" id="nrl5n6_16">base64</code> 编码的字符串，不包含 <code class="code" id="nrl5n6_17">data:image/png;base64,</code> 前缀。和 <code class="code" id="nrl5n6_18">Generate</code> 接口一样， <code class="code" id="nrl5n6_19">image</code> 可以是 <code class="code" id="nrl5n6_20">base64</code> 编码的字符串，也可以是图片的 URL。</p><p id="nrl5n6_13">上面的示例中，是 <code class="code" id="nrl5n6_21">Generate mask</code> 接口可以接受的所有参数，实际上，你只需要传递在界面上看到的即可，只有 <code class="code" id="nrl5n6_22">image</code> 是必填的。 它们中的大多数的都是对应 <code class="code" id="nrl5n6_23">sam</code> 这个模型的，而且都有默认值，所以你不需要全部都传递，只需要传递你需要的即可。</p></section><section class="chapter"><h2 id="inpaint" data-toc="inpaint">Inpaint</h2><p id="nrl5n6_24">Pass an image and a mask, with or without prompt to the generate endpoint to get a new image.</p><div class="code-block" data-lang="python">
+import requests
+
+url = &quot;http://localhost:7866/v1/engine/generate&quot;
+
+params = {
+    &quot;prompt&quot;: &quot;&quot;,
+    &quot;inpaint_additional_prompt&quot;: &quot;a red ball&quot;,
+    &quot;inpaint_input_image&quot;: &quot;http://localhost:7866/outputs/2024-07-27/2024-07-26_16-13-33_3951.png&quot;,
+    &quot;inpaint_mask_image_upload&quot;: &quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABIAAAAOACAA...&quot;
+}
+
+response = requests.post(url, json=params)
+</div><p id="nrl5n6_26">这个示例就是上面的图片和生成的 <code class="code" id="nrl5n6_28">mask</code> ，不过请注意，重绘区域将严格遵循 <code class="code" id="nrl5n6_29">mask</code> 中的部分。比如上面的代码，其结果是：</p><figure id="nrl5n6_27"><img alt="2024-07-28_20-10-08_8815.png" src="images/2024-07-28_20-10-08_8815.png" title="2024-07-28_20-10-08_8815.png" width="1152" height="896"></figure></section><section class="chapter"><h2 id="outpaint" data-toc="outpaint">Outpaint</h2><div class="code-block" data-lang="python">
+import requests
+
+url = &quot;http://localhost:7866/v1/engine/generate&quot;
+
+params = {
+    &quot;inpaint_input_image&quot;: &quot;http://localhost:7866/outputs/2024-07-27/2024-07-26_16-13-33_3951.png&quot;,
+    &quot;outpaint_selections&quot;: [&quot;Left&quot;, &quot;Bottom&quot;]
+}
+
+response = requests.post(url, json=params)
+</div><p id="nrl5n6_31">you will get this：</p><figure id="nrl5n6_32"><img alt="2024-07-28_20-18-25_1371.png" src="images/2024-07-28_20-18-25_1371.png" title="2024-07-28_20-18-25_1371.png" width="1497" height="1164"></figure><aside class="prompt" data-type="tip" data-title="" id="nrl5n6_33"><p id="nrl5n6_34">the outpaint distance is 1/3 of image length or height</p></aside></section><div class="last-modified">Last modified: 01 八月 2024</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="text-to-image.html" class="navigation-links__prev">Text to image</a><a href="upscalevary.html" class="navigation-links__next">UpscaleVary</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b408/app.js"></script></body></html>

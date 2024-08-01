@@ -1,0 +1,38 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2024-08-01T14:56:17.1051778"><title>Preset | FooocusAPI</title><script type="application/json" id="virtual-toc-data">[]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b408/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Preset | FooocusAPI"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="FooocusAPI Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/docs/zh_cn/preset.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Preset | FooocusAPI"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/docs/zh_cn/preset.html#webpage",
+    "url": "writerside-documentation/docs/zh_cn/preset.html",
+    "name": "Preset | FooocusAPI",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/docs/#website",
+    "url": "writerside-documentation/docs/",
+    "name": "FooocusAPI Help"
+}</script><!-- End Schema.org --></head><body data-id="Preset" data-main-title="Preset" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="How-to.md|How to"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>FooocusAPI zh_cn Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="Preset" id="Preset.md">Preset</h1><p id="hiaksw_3">Preset 是一系列预设参数的集合，用于快速生成一个特定风格或参数的图像。这些预设的配置文件位于 <code class="code" id="hiaksw_11">preset</code> 目录下，每个文件对应一个预设。</p><aside class="prompt" data-type="tip" data-title="" id="hiaksw_4"><p id="hiaksw_12">这些预设通常会使用不同的模型，如果是初次使用，可能会花费较长时间用来下载模型。</p></aside><p id="hiaksw_5">使用它们很简单，只需要在参数传递时指定 <code class="code" id="hiaksw_13">preset</code> 参数即可。例如：</p><div class="code-block" data-lang="python">
+import requests
+
+url = &quot;http://127.0.0.1:7866/v1/engine/generate&quot;
+
+params = {
+    &quot;preset&quot;: &quot;anime&quot;,
+    &quot;prompt&quot;: &quot;a dog playing with a ball&quot;
+}
+
+response = requests.post(url, json=params)
+</div><figure id="hiaksw_7"><img alt="2024-07-29_13-34-59_6906.png" src="images/2024-07-29_13-34-59_6906.png" title="2024-07-29_13-34-59_6906.png" width="896" height="1152"></figure><p id="hiaksw_8">比如我们换一种，使用 <code class="code" id="hiaksw_14">sai</code> 预设：</p><div class="code-block" data-lang="python">
+import requests
+
+url = &quot;http://127.0.0.1:7866/v1/engine/generate&quot;
+
+params = {
+    &quot;preset&quot;: &quot;sai&quot;,
+    &quot;prompt&quot;: &quot;a dog playing with a ball&quot;
+}
+
+response = requests.post(url, json=params)
+</div><figure id="hiaksw_10"><img alt="2024-07-29_13-37-12_6520.png" src="images/2024-07-29_13-37-12_6520.png" title="2024-07-29_13-37-12_6520.png" width="1152" height="896"></figure><div class="last-modified">Last modified: 01 八月 2024</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="describeimage.html" class="navigation-links__prev">DescribeImage</a><a href="miximageprompt.html" class="navigation-links__next">MixImagePrompt</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b408/app.js"></script></body></html>
